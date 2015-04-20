@@ -20,4 +20,12 @@ public class AppConfig {
     public String googleClientSecret() {
         return config.getString("google.clientSecret");
     }
+
+    public String dropboxAppKey() {
+        return config.getString("dropbox.appKey");
+    }
+
+    public String dropboxAppSecret() {
+        return config.getString("dropbox.appSecret");
+    }
 }
