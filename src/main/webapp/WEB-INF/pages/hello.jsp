@@ -9,14 +9,18 @@
 <div id="todo"></div>
 <div class="main">
     <div class="login">
-        <a class="login-btn btn btn-primary" href="">
+        <a class="login-btn btn btn-primary" href="${dropbox_redirection_url}">
             Dropbox
             <span class="glyphicon glyphicon-user"></span>
         </a>
-        <a class="login-btn btn btn-primary" href="">
+        <a class="login-btn btn btn-primary" href="${google_redirection_url}">
             Google
             <span class="glyphicon glyphicon-user"></span>
         </a>
+    </div>
+    <BR>
+    <div class="login">
+        ${dropbox_user_id}
     </div>
 </div>
 </body>

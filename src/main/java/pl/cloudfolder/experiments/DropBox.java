@@ -28,42 +28,11 @@ import java.util.Locale;
  */
 
 @Controller
-@RequestMapping("/dropbox")
+@RequestMapping("/dropbox2")
 public class DropBox {
 
-    private final DbxWebAuth webAuth;
-    private final DbxStandardSessionStore csrfStore;
-    private static final String CSRF_KEY = "dropbox-auth-csrf-token";
-    private final DbxRequestConfig config;
+
     private DbxClient client;
-
-    @Autowired
-    public DropBox(AppConfig appConfig, HttpSession session) {
-        DbxAppInfo appInfo = new DbxAppInfo(appConfig.dropboxAppKey(), appConfig.dropboxAppSecret());
-        config = new DbxRequestConfig(
-                "ZTISCloudCommander", Locale.getDefault().toString());
-        csrfStore = new DbxStandardSessionStore(session, CSRF_KEY);
-        webAuth = new DbxWebAuth(config, appInfo, "http://localhost:8080/dropbox/auth", csrfStore);
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String main(HttpServletRequest request) {
-        request.setAttribute("dropboxLogin", webAuth.start());
-        return "experiments/dropbox";
-    }
-
-    @RequestMapping("/auth")
-    public String auth(String state, String code) throws IOException, DbxWebAuth.NotApprovedException, DbxWebAuth.BadRequestException, DbxException, DbxWebAuth.CsrfException, DbxWebAuth.BadStateException, DbxWebAuth.ProviderException {
-        System.out.println(state);
-        System.out.println(code);
-        HashMap<String, String[]> params = new HashMap<String, String[]>();
-        params.put("code", new String[]{code});
-        params.put("state", new String[]{state});
-        DbxAuthFinish authFinish = webAuth.finish(params);
-        String accessToken = authFinish.accessToken;
-        client = new DbxClient(config, accessToken);
-        return "experiments/dropbox";
-    }
 
     @RequestMapping("/list")
     public String list() throws IOException, DbxException {
