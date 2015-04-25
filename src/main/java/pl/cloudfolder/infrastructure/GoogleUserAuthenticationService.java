@@ -12,7 +12,7 @@ import pl.cloudfolder.domain.UserAuthenticationService;
 @Scope("session")
 public class GoogleUserAuthenticationService implements UserAuthenticationService {
     @Override
-    public String redirectionURL() {
+    public String redirectURL() {
         return "http://google.pl";
     }
 

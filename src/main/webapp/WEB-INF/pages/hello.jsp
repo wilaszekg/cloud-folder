@@ -9,11 +9,11 @@
 <div id="todo"></div>
 <div class="main">
     <div class="login">
-        <a class="login-btn btn btn-primary" href="${dropbox_redirection_url}">
+        <a class="login-btn btn btn-primary" href="${dropbox_redirect_url}">
             Dropbox
             <span class="glyphicon glyphicon-user"></span>
         </a>
-        <a class="login-btn btn btn-primary" href="${google_redirection_url}">
+        <a class="login-btn btn btn-primary" href="${google_redirect_url}">
             Google
             <span class="glyphicon glyphicon-user"></span>
         </a>

@@ -37,7 +37,7 @@ public class DropboxUserAuthenticationService implements UserAuthenticationServi
     }
 
     @Override
-    public String redirectionURL() {
+    public String redirectURL() {
         return webAuth.start();
     }
 

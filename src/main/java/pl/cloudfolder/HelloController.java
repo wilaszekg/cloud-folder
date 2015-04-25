@@ -24,8 +24,8 @@ public class HelloController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
-        model.addAttribute("dropbox_redirection_url", usersManager.redirectionURLForDropboxService());
-        model.addAttribute("google_redirection_url", usersManager.redirectionURLForGoogleService());
+        model.addAttribute("dropbox_redirect_url", usersManager.redirectionURLForDropboxService());
+        model.addAttribute("google_redirect_url", usersManager.redirectionURLForGoogleService());
 		return "hello";
 	}
 

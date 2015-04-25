@@ -41,7 +41,7 @@ public class UsersManager {
     }
 
     private String redirectionURLForService(UserAuthenticationService userAuthenticationService) {
-        return userAuthenticationService.redirectionURL();
+        return userAuthenticationService.redirectURL();
     }
 
     private String userIdForServiceStateAndCode(UserAuthenticationService userAuthenticationService, String state, String code) throws Exception {
