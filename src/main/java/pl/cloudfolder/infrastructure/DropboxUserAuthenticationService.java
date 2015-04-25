@@ -2,16 +2,13 @@ package pl.cloudfolder.infrastructure;
 
 import com.dropbox.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import pl.cloudfolder.domain.UserAuthenticationService;
 import pl.cloudfolder.infrastructure.config.AppConfig;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by adrian on 25/04/15.
@@ -37,12 +34,12 @@ public class DropboxUserAuthenticationService implements UserAuthenticationServi
     }
 
     @Override
-    public String redirectURL() {
+    public String loginURL() {
         return webAuth.start();
     }
 
     @Override
-    public String userIdForStateAndCode(String state, String code) throws DbxWebAuth.NotApprovedException, DbxWebAuth.BadRequestException, DbxException, DbxWebAuth.CsrfException, DbxWebAuth.BadStateException, DbxWebAuth.ProviderException {
+    public String finishAuthenticationWithStateAndCode(String state, String code) throws DbxWebAuth.NotApprovedException, DbxWebAuth.BadRequestException, DbxException, DbxWebAuth.CsrfException, DbxWebAuth.BadStateException, DbxWebAuth.ProviderException {
         HashMap<String, String[]> params = new HashMap<String, String[]>();
         params.put("code", new String[]{code});
         params.put("state", new String[]{state});
@@ -52,6 +49,11 @@ public class DropboxUserAuthenticationService implements UserAuthenticationServi
         String userID = ServiceType.dropbox.name() + client.getAccountInfo().userId;
         clients.put(userID, client);
         return userID;
+    }
+
+    @Override
+    public Set<String> loggedUserIds() {
+        return clients.keySet();
     }
 
     @Override

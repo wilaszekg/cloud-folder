@@ -1,5 +1,6 @@
 <html>
 <head>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <link rel="stylesheet" type="text/css" href="/resources/css/app.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-theme.css"/>
@@ -10,17 +11,13 @@
 <div class="main">
     <div class="login">
         <a class="login-btn btn btn-primary" href="${dropbox_redirect_url}">
-            Dropbox
+            Dropbox ${dropbox_username}
             <span class="glyphicon glyphicon-user"></span>
         </a>
         <a class="login-btn btn btn-primary" href="${google_redirect_url}">
-            Google
+            Google ${google_username}
             <span class="glyphicon glyphicon-user"></span>
         </a>
-    </div>
-    <BR>
-    <div class="login">
-        ${dropbox_user_id}
     </div>
 </div>
 </body>

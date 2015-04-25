@@ -3,8 +3,8 @@
 }
 
 .login {
-    horiz-align: center;
-    float: right;
+    width: 604px;
+    margin: 0 auto 0 auto;
 }
 
 .login::after {
@@ -12,5 +12,5 @@
 }
 
 .login-btn {
-    width: 150px;
+    width: 300px;
 }

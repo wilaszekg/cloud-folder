@@ -19,6 +19,9 @@ public class AppConfig {
     public String googleClientSecret() {
         return config.getString("google.clientSecret");
     }
+    public String googleCallback() {
+        return config.getString("google.callbackURL");
+    }
 
     public String dropboxAppKey() {
         return config.getString("dropbox.appKey");
