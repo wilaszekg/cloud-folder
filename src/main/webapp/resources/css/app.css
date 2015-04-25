@@ -1,0 +1,16 @@
+.main {
+    margin: 5px 20px;
+}
+
+.login {
+    horiz-align: center;
+    float: right;
+}
+
+.login::after {
+    clear: both;
+}
+
+.login-btn {
+    width: 150px;
+}
