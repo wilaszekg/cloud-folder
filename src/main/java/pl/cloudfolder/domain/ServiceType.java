@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure;
+package pl.cloudfolder.domain;
 
 /**
  * Created by adrian on 25/04/15.
