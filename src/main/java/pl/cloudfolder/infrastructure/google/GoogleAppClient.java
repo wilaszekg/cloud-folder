@@ -1,8 +1,8 @@
 package pl.cloudfolder.infrastructure.google;
 
 import com.google.api.services.drive.Drive;
-import pl.cloudfolder.domain.AppClient;
-import pl.cloudfolder.domain.ClientIds;
+import pl.cloudfolder.domain.clients.AppClient;
+import pl.cloudfolder.domain.clients.ClientIds;
 import pl.cloudfolder.domain.ServiceType;
 
 import java.io.IOException;

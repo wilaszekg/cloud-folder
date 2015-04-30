@@ -2,10 +2,8 @@ package pl.cloudfolder.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.cloudfolder.infrastructure.dropbox.DropboxAppClients;
-import pl.cloudfolder.infrastructure.dropbox.DropboxUserService;
-import pl.cloudfolder.infrastructure.google.GoogleAppClients;
-import pl.cloudfolder.infrastructure.google.GoogleUserService;
+import pl.cloudfolder.domain.clients.AppClient;
+import pl.cloudfolder.domain.clients.AppClients;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -19,7 +17,7 @@ public class ServiceCoordinator {
     private final AppClients dropboxAppClients;
 
     @Autowired
-    public ServiceCoordinator(GoogleUserService googleUserService, DropboxUserService dropboxUserService, GoogleAppClients googleAppClients, DropboxAppClients appClients) {
+    public ServiceCoordinator(UserService googleUserService, UserService dropboxUserService, AppClients googleAppClients, AppClients appClients) {
         this.googleUserService = googleUserService;
         this.dropboxUserService = dropboxUserService;
         this.googleAppClients = googleAppClients;

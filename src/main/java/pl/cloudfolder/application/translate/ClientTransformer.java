@@ -3,7 +3,7 @@ package pl.cloudfolder.application.translate;
 import org.springframework.stereotype.Component;
 import pl.cloudfolder.application.dto.ClientDto;
 import pl.cloudfolder.application.dto.Service;
-import pl.cloudfolder.domain.AppClient;
+import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.ServiceType;
 
 @Component

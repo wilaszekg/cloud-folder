@@ -3,8 +3,8 @@ package pl.cloudfolder.infrastructure.dropbox;
 import com.dropbox.core.DbxAccountInfo;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxException;
-import pl.cloudfolder.domain.AppClient;
-import pl.cloudfolder.domain.ClientIds;
+import pl.cloudfolder.domain.clients.AppClient;
+import pl.cloudfolder.domain.clients.ClientIds;
 import pl.cloudfolder.domain.ServiceType;
 
 public class DropboxAppClient implements AppClient {

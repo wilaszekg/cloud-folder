@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.cloudfolder.application.dto.ClientDto;
 import pl.cloudfolder.application.translate.ClientTransformer;
-import pl.cloudfolder.domain.AppClient;
-import pl.cloudfolder.domain.AppClients;
+import pl.cloudfolder.domain.clients.AppClient;
+import pl.cloudfolder.domain.clients.AppClients;
 import pl.cloudfolder.domain.ServiceCoordinator;
 import pl.cloudfolder.domain.UserService;
 

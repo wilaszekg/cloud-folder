@@ -1,4 +1,6 @@
-package pl.cloudfolder.domain;
+package pl.cloudfolder.domain.clients;
+
+import pl.cloudfolder.domain.UserService;
 
 import java.util.Collection;
 import java.util.HashMap;
