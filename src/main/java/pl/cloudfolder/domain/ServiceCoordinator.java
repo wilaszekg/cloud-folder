@@ -17,11 +17,11 @@ public class ServiceCoordinator {
     private final AppClients dropboxAppClients;
 
     @Autowired
-    public ServiceCoordinator(UserService googleUserService, UserService dropboxUserService, AppClients googleAppClients, AppClients appClients) {
+    public ServiceCoordinator(UserService googleUserService, UserService dropboxUserService, AppClients googleAppClients, AppClients dropboxAppClients) {
         this.googleUserService = googleUserService;
         this.dropboxUserService = dropboxUserService;
         this.googleAppClients = googleAppClients;
-        this.dropboxAppClients = appClients;
+        this.dropboxAppClients = dropboxAppClients;
     }
 
     public Collection<AppClient> allClients() {
