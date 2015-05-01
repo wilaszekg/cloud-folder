@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.AppClients;
+import pl.cloudfolder.domain.clients.UserService;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

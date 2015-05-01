@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.google;
+package pl.cloudfolder.infrastructure.google.clients;
 
 import com.google.api.services.drive.Drive;
 import pl.cloudfolder.domain.clients.AppClient;

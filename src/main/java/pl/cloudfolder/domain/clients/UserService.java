@@ -1,4 +1,4 @@
-package pl.cloudfolder.domain;
+package pl.cloudfolder.domain.clients;
 
 public interface UserService<Credentials> {
     public String loginURL();

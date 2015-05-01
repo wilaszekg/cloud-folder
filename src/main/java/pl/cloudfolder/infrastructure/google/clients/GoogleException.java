@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.google;
+package pl.cloudfolder.infrastructure.google.clients;
 
 public class GoogleException extends RuntimeException {
     public GoogleException() {

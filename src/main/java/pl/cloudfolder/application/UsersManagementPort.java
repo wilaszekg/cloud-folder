@@ -7,7 +7,7 @@ import pl.cloudfolder.application.translate.ClientTransformer;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.AppClients;
 import pl.cloudfolder.domain.ServiceCoordinator;
-import pl.cloudfolder.domain.UserService;
+import pl.cloudfolder.domain.clients.UserService;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

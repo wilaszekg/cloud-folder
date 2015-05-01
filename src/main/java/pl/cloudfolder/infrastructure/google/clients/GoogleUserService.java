@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.google;
+package pl.cloudfolder.infrastructure.google.clients;
 
 import com.google.api.client.auth.oauth2.StoredCredential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -10,7 +10,7 @@ import com.google.api.client.util.store.MemoryDataStoreFactory;
 import com.google.api.services.drive.DriveScopes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.cloudfolder.domain.UserService;
+import pl.cloudfolder.domain.clients.UserService;
 import pl.cloudfolder.infrastructure.config.AppConfig;
 
 import java.io.IOException;

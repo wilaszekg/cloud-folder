@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.google;
+package pl.cloudfolder.infrastructure.google.clients;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;

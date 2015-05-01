@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.dropbox;
+package pl.cloudfolder.infrastructure.dropbox.clients;
 
 import com.dropbox.core.DbxAccountInfo;
 import com.dropbox.core.DbxClient;

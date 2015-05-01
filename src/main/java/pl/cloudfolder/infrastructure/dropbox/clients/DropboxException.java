@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.dropbox;
+package pl.cloudfolder.infrastructure.dropbox.clients;
 
 public class DropboxException extends RuntimeException {
     public DropboxException() {

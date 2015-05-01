@@ -1,4 +1,4 @@
-package pl.cloudfolder.infrastructure.dropbox;
+package pl.cloudfolder.infrastructure.dropbox.clients;
 
 import com.dropbox.core.DbxClient;
 import org.springframework.beans.factory.annotation.Autowired;

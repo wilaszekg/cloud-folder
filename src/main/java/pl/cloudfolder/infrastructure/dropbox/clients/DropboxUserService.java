@@ -1,9 +1,9 @@
-package pl.cloudfolder.infrastructure.dropbox;
+package pl.cloudfolder.infrastructure.dropbox.clients;
 
 import com.dropbox.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.cloudfolder.domain.UserService;
+import pl.cloudfolder.domain.clients.UserService;
 import pl.cloudfolder.infrastructure.config.AppConfig;
 
 import javax.servlet.http.HttpSession;
