@@ -5,6 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.cloudfolder.application.StorageManagementPort;
 import pl.cloudfolder.application.UsersManagementPort;
+import pl.cloudfolder.application.dto.ClientDto;
+import pl.cloudfolder.domain.storage.Directory;
+import pl.cloudfolder.domain.storage.StorageItem;
+
+import java.util.List;
 
 /**
  * Created by Adiki on 2015-05-02.
@@ -22,7 +27,15 @@ public class StorageManagementAdapter {
 
     @RequestMapping("/test")
     public String auth() {
-        storageManagementPort.rootListeningForUserClient(usersManagementPort.userClients().iterator().next());
+        ClientDto userClient = usersManagementPort.userClients().iterator().next();
+        List<StorageItem> l = storageManagementPort.rootListingForUserClient(userClient);
+        Directory dir = null;
+        for (StorageItem storageItem : l) {
+            if (storageItem instanceof Directory) {
+                dir = (Directory) storageItem;
+            }
+        }
+        List<StorageItem> l2 = storageManagementPort.listingForDirectoryAndUserClient(dir, userClient);
         return "main";
     }
 }

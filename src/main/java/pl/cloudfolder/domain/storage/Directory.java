@@ -3,5 +3,8 @@ package pl.cloudfolder.domain.storage;
 /**
  * Created by Adiki on 2015-05-01.
  */
-public abstract class Directory extends StorageItem {
+public class Directory extends StorageItem {
+    public Directory(String name, String path) {
+        super(name, path);
+    }
 }
