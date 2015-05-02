@@ -5,10 +5,27 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/app.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-theme.css"/>
-    <script type="text/jsx" data-main="/resources/scripts/app" src="/resources/scripts/vendor/require.js"></script>
+    <script data-main="/resources/scripts/app" src="/resources/scripts/vendor/require.js"></script>
+
+    <script id="account-template" type="text/x-handlebars-template">
+        <span>{{name}}</span>
+        <span>{{service}}</span>
+    </script>
+
+    <script id="file-template" type="text/x-handlebars-template">
+        <span>{{name}}</span>
+    </script>
+
+    <script id="folder-template" type="text/x-handlebars-template">
+        <span>[DIR] {{name}}</span>
+    </script>
+
+    <script id="clients-json" type="application/json">
+        ${clients}
+    </script>
 </head>
 <body>
-<div id="todo"></div>
+
 <div class="main">
     <div class="login">
         <a class="login-btn btn btn-primary" href="${dropbox_redirect_url}">
@@ -27,26 +44,14 @@
         </div>
     </c:if>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                Your logged in clients
-            </th>
-            <th>
-                Provider
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${clients}" var="client">
-            <tr>
-                <td>${client.name}</td>
-                <td>${client.service}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+
+    <div class="folder">
+        <ul id="accounts-list">
+        </ul>
+
+        <ul id="files-list">
+        </ul>
+    </div>
 </div>
 </body>
 </html>

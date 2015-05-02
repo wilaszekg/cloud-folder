@@ -4,7 +4,7 @@
 
 .login {
     width: 404px;
-    margin: 0 auto 0 auto;
+    margin: 15px auto;
 }
 
 .login::after {
@@ -13,4 +13,24 @@
 
 .login-btn {
     width: 200px;
+}
+
+.folder {
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+    width: 500px;
+}
+
+.folder ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px 0;
+}
+
+.folder li {
+    padding: 0 15px;
+}
+
+.folder li:hover {
+    background-color: #66afe9;
 }

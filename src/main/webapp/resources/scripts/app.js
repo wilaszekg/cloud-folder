@@ -11,7 +11,8 @@ requirejs.config({
         underscore: "underscore",
         json2: "json2",
         backbone: 'backbone',
-        marionette: 'backbone.marionette'
+        marionette: 'backbone.marionette',
+        handlebars: 'handlebars-v3.0.3'
     },
     shim: {
         underscore: {
