@@ -39,4 +39,8 @@ public class DropboxAppClient implements AppClient {
     private String externalServiceId() {
         return Long.toString(accountInfo.userId);
     }
+
+    public DbxClient getDbxClient() {
+        return dbxClient;
+    }
 }
