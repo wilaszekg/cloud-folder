@@ -34,3 +34,7 @@
 .folder li:hover {
     background-color: #66afe9;
 }
+
+.back-to-accounts {
+    margin-left: 15px;
+}

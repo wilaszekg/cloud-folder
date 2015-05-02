@@ -3,8 +3,7 @@ define(["backbone"], function (Backbone) {
         defaults: {
             id: "",
             clientId: "",
-            name: "",
-            parentId: ""
+            name: ""
         }
     })
 });

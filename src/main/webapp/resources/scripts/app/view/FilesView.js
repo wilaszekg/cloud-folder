@@ -1,5 +1,10 @@
-define(["marionette", "app/view/FileView", "app/view/FolderView"], function (Marionette, FileView, FolderView) {
-    return Marionette.CollectionView.extend({
+define(["marionette",
+    "app/lib/Hbs",
+    "app/view/FileView",
+    "app/view/FolderView"], function (Marionette, hbs, FileView, FolderView) {
+    return Marionette.CompositeView.extend({
+
+        template: hbs("#folder-header-template"),
 
         collectionEvents: {
             sync: "render"
@@ -7,6 +12,11 @@ define(["marionette", "app/view/FileView", "app/view/FolderView"], function (Mar
 
         childEvents: {
             "folder:open": "openFolder"
+        },
+
+        events: {
+            "click .back-to-accounts": "backToAccounts",
+            "click .back-to-parent": "backToParent"
         },
 
         getChildView: function (model) {
@@ -18,15 +28,34 @@ define(["marionette", "app/view/FileView", "app/view/FolderView"], function (Mar
         },
 
         openMainFolder: function (caller, clientId) {
-            this.collection.setClientId(clientId)
-                .setId(null)
+            this.show();
+            this.collection.visitMainFolder(clientId)
                 .fetch();
         },
 
-        openFolder: function (caller, clientId, id) {
-            this.collection.setClientId(clientId)
-                .setId(id)
+        openFolder: function (caller, id) {
+            this.collection.visitChild(id)
                 .fetch();
+        },
+
+        backToAccounts: function () {
+            this.hide();
+            this.trigger("folder:show:accounts");
+        },
+
+        backToParent: function () {
+            if (!this.collection.hasParent()) {
+                return this.backToAccounts();
+            }
+            this.collection.visitParent().fetch();
+        },
+
+        show: function () {
+            this.$el.show();
+        },
+
+        hide: function () {
+            this.$el.hide();
         }
     })
 });

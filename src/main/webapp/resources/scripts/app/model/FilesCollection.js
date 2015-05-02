@@ -5,6 +5,7 @@ define(["backbone", "app/model/FileModel", "app/model/FolderModel"], function (B
         initialize: function () {
             this.id = null;
             this.clientId = null;
+            this.parents = [];
         },
 
         url: function () {
@@ -24,15 +25,27 @@ define(["backbone", "app/model/FileModel", "app/model/FolderModel"], function (B
             }
         },
 
-        setId: function (id) {
-            this.id = id;
+        visitChild: function (childId) {
+            this.parents.push(this.id);
+            this.id = childId;
             return this;
         },
 
-        setClientId: function (clientId) {
+        visitMainFolder: function (clientId) {
             //this.clientId = clientId;
-            this.clientId = "wilaszekg";
+            this.id = null;
+            this.parents = [];
+            this.clientId = "hardcoded";
             return this;
+        },
+
+        visitParent: function () {
+            this.id = this.parents.pop();
+            return this;
+        },
+
+        hasParent: function () {
+            return this.parents.length;
         }
     })
 });

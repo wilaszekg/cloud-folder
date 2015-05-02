@@ -10,17 +10,17 @@ import java.util.LinkedList;
 public class StoragePort {
     public Collection<FileDto> userMainFolder(String userId) {
         LinkedList<FileDto> files = new LinkedList<>();
-        files.add(new FileDto("1", userId, "images", null, true));
-        files.add(new FileDto("2", userId, "documents", null, true));
-        files.add(new FileDto("3", userId, "prezentacja.doc", null, false));
+        files.add(new FileDto("1", userId, "images", true));
+        files.add(new FileDto("2", userId, "documents", true));
+        files.add(new FileDto("3", userId, "prezentacja.doc", false));
         return files;
     }
 
     public Collection<FileDto> folderContent(String userId, String folderId) {
         LinkedList<FileDto> files = new LinkedList<>();
-        files.add(new FileDto("4", userId, "wakacje 2014", null, true));
-        files.add(new FileDto("5", userId, "feie 2015", null, true));
-        files.add(new FileDto("6", userId, "swieta 2014.jpg", null, false));
+        files.add(new FileDto("4", userId, "wakacje 2014", true));
+        files.add(new FileDto("5", userId, "feie 2015", true));
+        files.add(new FileDto("6", userId, "swieta 2014.jpg", false));
         return files;
     }
 }

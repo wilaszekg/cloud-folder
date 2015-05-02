@@ -8,7 +8,8 @@ define(["marionette", "app/lib/Hbs"], function (Marionette, hbs) {
         },
 
         openFolder: function () {
-            this.trigger("folder:open", this.model.get("clientId"), this.model.get("id"));
+            this.trigger("folder:open",
+                this.model.get("id"));
         }
     })
 });

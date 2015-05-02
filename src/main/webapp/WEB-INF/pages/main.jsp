@@ -2,9 +2,9 @@
 <html>
 <head>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <link rel="stylesheet" type="text/css" href="/resources/css/app.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/app.css"/>
     <script data-main="/resources/scripts/app" src="/resources/scripts/vendor/require.js"></script>
 
     <script id="account-template" type="text/x-handlebars-template">
@@ -17,7 +17,15 @@
     </script>
 
     <script id="folder-template" type="text/x-handlebars-template">
-        <span>[DIR] {{name}}</span>
+        <span class="glyphicon glyphicon-folder-open"></span>
+        <span>{{name}}</span>
+    </script>
+
+    <script id="folder-header-template" type="text/x-handlebars-template">
+        <button class="btn btn-info btn-sm back-to-accounts">Back to accounts list</button>
+        <li class="back-to-parent">
+            <span class="glyphicon glyphicon-folder-close"> ..</span>
+        </li>
     </script>
 
     <script id="clients-json" type="application/json">

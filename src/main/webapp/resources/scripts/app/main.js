@@ -19,6 +19,7 @@ define(["marionette", "jquery",
     });
 
     filesView.listenTo(accountsView, "childview:account:open:main", filesView.openMainFolder);
+    accountsView.listenTo(filesView, "folder:show:accounts", accountsView.show);
 
 
 });
