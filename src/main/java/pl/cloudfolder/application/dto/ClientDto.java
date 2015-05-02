@@ -3,7 +3,8 @@ package pl.cloudfolder.application.dto;
 public class ClientDto {
     private String id;
     private String name;
-    private Service service;
+    private boolean google;
+    private boolean dropbox;
 
     public String getId() {
         return id;
@@ -21,11 +22,19 @@ public class ClientDto {
         this.name = name;
     }
 
-    public Service getService() {
-        return service;
+    public boolean isGoogle() {
+        return google;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setGoogle(boolean google) {
+        this.google = google;
+    }
+
+    public boolean isDropbox() {
+        return dropbox;
+    }
+
+    public void setDropbox(boolean dropbox) {
+        this.dropbox = dropbox;
     }
 }

@@ -28,18 +28,14 @@ public class UsersManagementAdapter {
 
     @RequestMapping("/dropbox/auth")
     public String auth(ModelMap model, String state, String code) {
-        ClientDto clientDto = usersManagementPort.finishDropboxAuthenticationWithStateAndCode(state, code);
-        buildModelMap(model);
-        model.addAttribute("newClient", clientDto);
-        return "main";
+        usersManagementPort.finishDropboxAuthenticationWithStateAndCode(state, code);
+        return "redirect:/";
     }
 
     @RequestMapping("/google/auth")
     public String auth(ModelMap model, String code) {
-        ClientDto clientDto = usersManagementPort.finishGoogleAuthenticationWithCode(code);
-        buildModelMap(model);
-        model.addAttribute("newClient", clientDto);
-        return "main";
+        usersManagementPort.finishGoogleAuthenticationWithCode(code);
+        return "redirect:/";
     }
 
     private void buildModelMap(ModelMap model) {

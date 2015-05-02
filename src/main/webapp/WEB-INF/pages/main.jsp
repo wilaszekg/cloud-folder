@@ -8,8 +8,14 @@
     <script data-main="/resources/scripts/app" src="/resources/scripts/vendor/require.js"></script>
 
     <script id="account-template" type="text/x-handlebars-template">
+        {{#if google}}
+        <span class="google"></span>
+        {{/if}}
+        {{#if dropbox}}
+        <span class="dropbox"></span>
+        {{/if}}
+
         <span>{{name}}</span>
-        <span>{{service}}</span>
     </script>
 
     <script id="file-template" type="text/x-handlebars-template">
@@ -24,7 +30,8 @@
     <script id="folder-header-template" type="text/x-handlebars-template">
         <button class="btn btn-info btn-sm back-to-accounts">Back to accounts list</button>
         <li class="back-to-parent">
-            <span class="glyphicon glyphicon-folder-close"> ..</span>
+            <span class="glyphicon glyphicon-folder-close"></span>
+            <span>..</span>
         </li>
     </script>
 
@@ -45,13 +52,6 @@
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
-
-    <c:if test="${not empty newClient}">
-        <div role="alert" class="alert alert-success">
-            You successfully signed in to <strong>${newClient.service}</strong> as ${newClient.name}.
-        </div>
-    </c:if>
-
 
     <div class="folder">
         <ul id="accounts-list">

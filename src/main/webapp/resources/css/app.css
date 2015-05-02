@@ -31,10 +31,30 @@
     padding: 0 15px;
 }
 
+.folder li .glyphicon {
+    margin-right: 10px;
+}
+
 .folder li:hover {
     background-color: #66afe9;
 }
 
+.folder .dropbox {
+    background: url(/resources/img/31-dropbox-128.png) no-repeat;
+}
+
+.folder .google {
+    background: url(/resources/img/GoogleDrive.png) no-repeat;
+}
+
+.folder .google, .folder .dropbox {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    display: inline-block;
+}
+
 .back-to-accounts {
     margin-left: 15px;
+    margin-bottom: 10px;
 }
