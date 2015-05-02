@@ -32,10 +32,9 @@ define(["backbone", "app/model/FileModel", "app/model/FolderModel"], function (B
         },
 
         visitMainFolder: function (clientId) {
-            //this.clientId = clientId;
+            this.clientId = clientId;
             this.id = null;
             this.parents = [];
-            this.clientId = "hardcoded";
             return this;
         },
 

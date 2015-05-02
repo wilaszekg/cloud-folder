@@ -3,9 +3,9 @@ package pl.cloudfolder.infrastructure.dropbox.clients;
 import com.dropbox.core.DbxAccountInfo;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxException;
+import pl.cloudfolder.domain.ServiceType;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.ClientIds;
-import pl.cloudfolder.domain.ServiceType;
 
 public class DropboxAppClient implements AppClient {
 
@@ -28,7 +28,7 @@ public class DropboxAppClient implements AppClient {
 
     @Override
     public String id() {
-        return ClientIds.newId(ServiceType.dropbox, externalServiceId());
+        return ClientIds.newId(ServiceType.dropbox);
     }
 
     @Override
@@ -36,9 +36,6 @@ public class DropboxAppClient implements AppClient {
         return ServiceType.dropbox;
     }
 
-    private String externalServiceId() {
-        return Long.toString(accountInfo.userId);
-    }
 
     public DbxClient getDbxClient() {
         return dbxClient;

@@ -26,7 +26,7 @@ public class GoogleAppClient implements AppClient {
 
     @Override
     public String id() {
-        return ClientIds.newId(ServiceType.google, externalServiceId());
+        return ClientIds.newId(ServiceType.google);
     }
 
     @Override
@@ -34,13 +34,6 @@ public class GoogleAppClient implements AppClient {
         return ServiceType.google;
     }
 
-    private String externalServiceId() {
-        try {
-            return drive.about().get().execute().getUser().getEmailAddress();
-        } catch (IOException e) {
-            throw new GoogleException(e);
-        }
-    }
 
     public Drive getDrive() {
         return drive;
