@@ -9,6 +9,7 @@ import pl.cloudfolder.domain.storage.Directory;
 import pl.cloudfolder.domain.storage.StorageItem;
 import pl.cloudfolder.domain.storage.StorageService;
 import pl.cloudfolder.infrastructure.dropbox.clients.DropboxAppClient;
+import pl.cloudfolder.infrastructure.google.clients.GoogleAppClient;
 
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class StorageManagementPort {
 
     @Autowired
     private StorageService<DropboxAppClient> dropboxStorageService;
+    @Autowired
+    private StorageService<GoogleAppClient> googleStorageService;
 
     public List<StorageItem> rootListingForUserClient(ClientDto userClient) {
         AppClient appClient = serviceCoordinator.appClient(userClient.getId());
@@ -30,7 +33,7 @@ public class StorageManagementPort {
             case dropbox:
                 return dropboxStorageService.rootListingForAppClient((DropboxAppClient) appClient);
             case google:
-                return null;
+                return googleStorageService.rootListingForAppClient((GoogleAppClient) appClient);
             default:
                 throw new IllegalStateException("Not supported service type");
         }
@@ -42,7 +45,7 @@ public class StorageManagementPort {
             case dropbox:
                 return dropboxStorageService.listingForDirectoryAndClient(directory, (DropboxAppClient) appClient);
             case google:
-                return null;
+                return googleStorageService.listingForDirectoryAndClient(directory, (GoogleAppClient) appClient);
             default:
                 throw new IllegalStateException("Not supported service type");
         }

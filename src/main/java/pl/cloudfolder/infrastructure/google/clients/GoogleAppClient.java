@@ -41,4 +41,8 @@ public class GoogleAppClient implements AppClient {
             throw new GoogleException(e);
         }
     }
+
+    public Drive getDrive() {
+        return drive;
+    }
 }
