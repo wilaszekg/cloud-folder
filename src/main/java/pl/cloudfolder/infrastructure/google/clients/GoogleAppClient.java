@@ -4,14 +4,18 @@ import com.google.api.services.drive.Drive;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.ClientIds;
 import pl.cloudfolder.domain.ServiceType;
+import pl.cloudfolder.domain.storage.StorageItem;
 
 import java.io.IOException;
+import java.util.Collection;
 
 public class GoogleAppClient implements AppClient {
 
+    private final String id;
     private final Drive drive;
 
     public GoogleAppClient(Drive drive) {
+        id = ClientIds.newId(ServiceType.dropbox);
         this.drive = drive;
     }
 
@@ -26,7 +30,7 @@ public class GoogleAppClient implements AppClient {
 
     @Override
     public String id() {
-        return ClientIds.newId(ServiceType.google);
+        return id;
     }
 
     @Override
@@ -34,8 +38,8 @@ public class GoogleAppClient implements AppClient {
         return ServiceType.google;
     }
 
-
-    public Drive getDrive() {
-        return drive;
+    @Override
+    public Collection<StorageItem> listingAtPath(String path) {
+        return null;
     }
 }

@@ -11,4 +11,8 @@ public class StorageItem {
         this.name = name;
         this.path = path;
     }
+
+    public boolean isDirectory() {
+        return this instanceof Directory;
+    }
 }

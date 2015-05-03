@@ -15,5 +15,4 @@ public class ClientTransformer {
         clientDto.setGoogle(client.serviceType() == ServiceType.google);
         return clientDto;
     }
-
 }

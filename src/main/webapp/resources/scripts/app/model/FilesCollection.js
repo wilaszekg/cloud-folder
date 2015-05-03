@@ -11,7 +11,7 @@ define(["backbone", "app/model/FileModel", "app/model/FolderModel"], function (B
         url: function () {
             var baseUrl = "/storage/" + this.clientId;
             if (this.id) {
-                return baseUrl + "/" + this.id;
+                return baseUrl + "/" + encodeURIComponent(this.id);
             } else {
                 return baseUrl;
             }

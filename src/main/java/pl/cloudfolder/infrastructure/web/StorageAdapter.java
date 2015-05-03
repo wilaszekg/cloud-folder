@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.cloudfolder.application.StoragePort;
-import pl.cloudfolder.application.dto.FileDto;
+import pl.cloudfolder.application.dto.StorageItemDto;
 
 import java.util.Collection;
 
@@ -23,13 +23,13 @@ public class StorageAdapter {
 
     @RequestMapping("/{userId}")
     @ResponseBody
-    public Collection<FileDto> userMainFolder(@PathVariable String userId) {
-        return storagePort.userMainFolder(userId);
+    public Collection<StorageItemDto> userMainFolder(@PathVariable String userId) {
+        return storagePort.rootListingForUserId(userId);
     }
 
-    @RequestMapping("/{userId}/{folderId}")
+    @RequestMapping("/{userId}/{directoryId}")
     @ResponseBody
-    public Collection<FileDto> folderContent(@PathVariable String userId, @PathVariable String folderId) {
-        return storagePort.folderContent(userId, folderId);
+    public Collection<StorageItemDto> folderContent(@PathVariable String userId, @PathVariable String directoryId) {
+        return storagePort.listingForUserIdAndDirectoryPath(userId, directoryId);
     }
 }

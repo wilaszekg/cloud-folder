@@ -50,7 +50,7 @@ public class UsersManagementPort {
     public Collection<ClientDto> userClients() {
         return serviceCoordinator.allClients()
                 .stream()
-                .map(client -> clientTransformer.apply(client))
+                .map(clientTransformer::apply)
                 .collect(Collectors.toList());
     }
 

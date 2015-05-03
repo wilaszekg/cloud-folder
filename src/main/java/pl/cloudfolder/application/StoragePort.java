@@ -1,26 +1,34 @@
 package pl.cloudfolder.application;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.cloudfolder.application.dto.FileDto;
+import pl.cloudfolder.application.dto.StorageItemDto;
+import pl.cloudfolder.application.translate.StorageItemTransformer;
+import pl.cloudfolder.domain.ServiceCoordinator;
+import pl.cloudfolder.domain.clients.AppClient;
+import pl.cloudfolder.domain.storage.StorageItem;
+import pl.cloudfolder.infrastructure.dropbox.clients.DropboxAppClient;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 @Component
 public class StoragePort {
-    public Collection<FileDto> userMainFolder(String userId) {
-        LinkedList<FileDto> files = new LinkedList<>();
-        files.add(new FileDto("1", userId, "images", true));
-        files.add(new FileDto("2", userId, "documents", true));
-        files.add(new FileDto("3", userId, "prezentacja.doc", false));
-        return files;
+
+    @Autowired
+    private ServiceCoordinator serviceCoordinator;
+
+    @Autowired
+    private StorageItemTransformer storageItemTransformer;
+
+    public Collection<StorageItemDto> rootListingForUserId(String userId) {
+        return listingForUserIdAndDirectoryPath(userId, "/");
     }
 
-    public Collection<FileDto> folderContent(String userId, String folderId) {
-        LinkedList<FileDto> files = new LinkedList<>();
-        files.add(new FileDto("4", userId, "wakacje 2014", true));
-        files.add(new FileDto("5", userId, "feie 2015", true));
-        files.add(new FileDto("6", userId, "swieta 2014.jpg", false));
-        return files;
+    public Collection<StorageItemDto> listingForUserIdAndDirectoryPath(String userId, String directoryPath) {
+        AppClient appClient = serviceCoordinator.appClient(userId);
+        Collection<StorageItem> storageItems = appClient.listingAtPath(directoryPath);
+        return storageItems.stream().map(storageItem -> storageItemTransformer.apply(storageItem, appClient)).collect(Collectors.toList());
     }
 }

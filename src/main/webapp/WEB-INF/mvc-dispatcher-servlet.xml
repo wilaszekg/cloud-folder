@@ -12,13 +12,20 @@
 
     <context:property-placeholder location="classpath:application.conf"/>
 
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:path-matching path-helper="urlPathHelper" />
+    </mvc:annotation-driven>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="urlPathHelper" class="org.springframework.web.util.UrlPathHelper">
+        <property name="urlDecode" value="false" />
+        <property name="alwaysUseFullPath" value="true" />
     </bean>
 
 </beans>

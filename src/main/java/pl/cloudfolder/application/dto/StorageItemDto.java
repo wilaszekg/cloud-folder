@@ -1,12 +1,12 @@
 package pl.cloudfolder.application.dto;
 
-public class FileDto {
+public class StorageItemDto {
     private String id;
     private String clientId;
     private String name;
     private boolean folder;
 
-    public FileDto(String id, String clientId, String name, boolean folder) {
+    public StorageItemDto(String id, String clientId, String name, boolean folder) {
         this.id = id;
         this.clientId = clientId;
         this.name = name;
