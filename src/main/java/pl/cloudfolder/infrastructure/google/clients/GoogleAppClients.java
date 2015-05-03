@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import pl.cloudfolder.domain.clients.AppClients;
+import pl.cloudfolder.infrastructure.google.storage.GoogleStorageManager;
 
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -22,7 +23,8 @@ public class GoogleAppClients extends AppClients<GoogleAppClient, GoogleCredenti
     @Override
     protected GoogleAppClient create(GoogleCredential googleCredential) {
         Drive drive = new Drive.Builder(new NetHttpTransport(), new JacksonFactory(), googleCredential).build();
-        return new GoogleAppClient(drive);
+        GoogleStorageManager googleStorageManager = new GoogleStorageManager(drive);
+        return new GoogleAppClient(googleStorageManager);
     }
 
 

@@ -5,11 +5,11 @@ package pl.cloudfolder.domain.storage;
  */
 public class StorageItem {
     public final String name;
-    public final String path;
+    public final String id;
 
-    public StorageItem(String name, String path) {
+    public StorageItem(String name, String id) {
         this.name = name;
-        this.path = path;
+        this.id = id;
     }
 
     public boolean isDirectory() {

@@ -7,10 +7,8 @@ import pl.cloudfolder.application.translate.StorageItemTransformer;
 import pl.cloudfolder.domain.ServiceCoordinator;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.storage.StorageItem;
-import pl.cloudfolder.infrastructure.dropbox.clients.DropboxAppClient;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,12 +21,13 @@ public class StoragePort {
     private StorageItemTransformer storageItemTransformer;
 
     public Collection<StorageItemDto> rootListingForUserId(String userId) {
-        return listingForUserIdAndDirectoryPath(userId, "/");
+        AppClient appClient = serviceCoordinator.appClient(userId);
+        return listingForUserIdAndDirectoryId(userId, appClient.rootDirectoryId());
     }
 
-    public Collection<StorageItemDto> listingForUserIdAndDirectoryPath(String userId, String directoryPath) {
+    public Collection<StorageItemDto> listingForUserIdAndDirectoryId(String userId, String directoryId) {
         AppClient appClient = serviceCoordinator.appClient(userId);
-        Collection<StorageItem> storageItems = appClient.listingAtPath(directoryPath);
+        Collection<StorageItem> storageItems = appClient.listingForDirectoryId(directoryId);
         return storageItems.stream().map(storageItem -> storageItemTransformer.apply(storageItem, appClient)).collect(Collectors.toList());
     }
 }

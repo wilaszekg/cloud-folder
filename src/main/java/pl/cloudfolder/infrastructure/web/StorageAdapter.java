@@ -30,6 +30,6 @@ public class StorageAdapter {
     @RequestMapping("/{userId}/{directoryId}")
     @ResponseBody
     public Collection<StorageItemDto> folderContent(@PathVariable String userId, @PathVariable String directoryId) {
-        return storagePort.listingForUserIdAndDirectoryPath(userId, directoryId);
+        return storagePort.listingForUserIdAndDirectoryId(userId, directoryId);
     }
 }

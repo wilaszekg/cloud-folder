@@ -11,7 +11,7 @@ import pl.cloudfolder.domain.storage.StorageItem;
 @Component
 public class StorageItemTransformer {
     public StorageItemDto apply(StorageItem storageItem, AppClient appClient) {
-        return new StorageItemDto(storageItem.path,
+        return new StorageItemDto(storageItem.id,
                 appClient.id(),
                 storageItem.name,
                 storageItem.isDirectory());

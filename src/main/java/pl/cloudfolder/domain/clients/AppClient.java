@@ -12,5 +12,7 @@ public interface AppClient {
 
     ServiceType serviceType();
 
-    Collection<StorageItem> listingAtPath(String path);
+    Collection<StorageItem> listingForDirectoryId(String id);
+
+    String rootDirectoryId();
 }

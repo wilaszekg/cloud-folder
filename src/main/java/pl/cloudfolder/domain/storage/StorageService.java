@@ -11,7 +11,7 @@ public abstract class StorageService <AppClientType> {
     }
 
     public List<StorageItem> listingForDirectoryAndClient(Directory directory, AppClientType appClient) {
-        return listingAtPath(directory.path, appClient);
+        return listingAtPath(directory.id, appClient);
     }
 
     protected abstract List<StorageItem> listingAtPath(String path, AppClientType appClient);

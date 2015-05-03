@@ -47,10 +47,10 @@ public class DropboxAppClient implements AppClient {
     }
 
     @Override
-    public Collection<StorageItem> listingAtPath(String path) {
+    public Collection<StorageItem> listingForDirectoryId(String id) {
         try {
             List<StorageItem> storageItems = new ArrayList<>();
-            DbxEntry.WithChildren listing = dbxClient.getMetadataWithChildren(path);
+            DbxEntry.WithChildren listing = dbxClient.getMetadataWithChildren(id);
             for (DbxEntry child : listing.children) {
                 StorageItem storageItem;
                 if (child.isFile()) {
@@ -64,6 +64,11 @@ public class DropboxAppClient implements AppClient {
         } catch (Exception e) {
             throw new DropboxException(e);
         }
+    }
+
+    @Override
+    public String rootDirectoryId() {
+        return "/";
     }
 
 }
