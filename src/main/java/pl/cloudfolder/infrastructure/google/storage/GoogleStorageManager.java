@@ -3,15 +3,13 @@ package pl.cloudfolder.infrastructure.google.storage;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.google.api.services.drive.model.ParentReference;
 import pl.cloudfolder.domain.storage.Directory;
 import pl.cloudfolder.domain.storage.StorageItem;
 import pl.cloudfolder.infrastructure.google.clients.GoogleException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Adiki on 2015-05-03.
@@ -72,5 +70,17 @@ public class GoogleStorageManager {
 
     public boolean isDirectory(File file) {
         return MIME_TYPE_FOLDER.equals(file.getMimeType());
+    }
+
+    public void createDirectoryWithNameInDirectoryWithId(String name, String parentDirectoryId) {
+        File newDirectory = new File();
+        newDirectory.setTitle(name);
+        newDirectory.setMimeType(MIME_TYPE_FOLDER);
+        newDirectory.setParents((Arrays.asList(new ParentReference().setId(parentDirectoryId))));
+        try {
+            drive.files().insert(newDirectory).execute();
+        } catch (IOException e) {
+            throw new GoogleException(e);
+        }
     }
 }

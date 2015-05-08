@@ -1,7 +1,5 @@
 package pl.cloudfolder.infrastructure.google.clients;
 
-import com.google.api.services.drive.Drive;
-import com.google.api.services.drive.model.File;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.ClientIds;
 import pl.cloudfolder.domain.ServiceType;
@@ -51,7 +49,7 @@ public class GoogleAppClient implements AppClient {
     }
 
     @Override
-    public void createDirectoryWithNameInDirectoryWithId(String name, String directoryId) {
-
+    public void createDirectoryWithNameInDirectoryWithId(String name, String parentDirectoryId) {
+        googleStorageManager.createDirectoryWithNameInDirectoryWithId(name, parentDirectoryId);
     }
 }

@@ -16,5 +16,5 @@ public interface AppClient {
 
     String rootDirectoryId();
 
-    void createDirectoryWithNameInDirectoryWithId(String name, String directoryId);
+    void createDirectoryWithNameInDirectoryWithId(String name, String parentDirectoryId);
 }

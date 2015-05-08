@@ -72,9 +72,9 @@ public class DropboxAppClient implements AppClient {
     }
 
     @Override
-    public void createDirectoryWithNameInDirectoryWithId(String name, String directoryId) {
+    public void createDirectoryWithNameInDirectoryWithId(String name, String parentDirectoryId) {
         try {
-            dbxClient.createFolder(directoryId + "/" + name);
+            dbxClient.createFolder(parentDirectoryId + "/" + name);
         } catch (DbxException e) {
             throw new DropboxException(e);
         }
