@@ -12,7 +12,9 @@ public interface AppClient {
 
     ServiceType serviceType();
 
-    Collection<StorageItem> listingForDirectoryId(String id);
+    Collection<StorageItem> listingForDirectoryId(String directoryId);
 
     String rootDirectoryId();
+
+    void createDirectoryWithNameInDirectoryWithId(String name, String directoryId);
 }

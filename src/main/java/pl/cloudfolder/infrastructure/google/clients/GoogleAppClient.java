@@ -49,4 +49,9 @@ public class GoogleAppClient implements AppClient {
     public String rootDirectoryId() {
         return "root";
     }
+
+    @Override
+    public void createDirectoryWithNameInDirectoryWithId(String name, String directoryId) {
+
+    }
 }
