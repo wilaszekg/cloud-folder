@@ -67,14 +67,27 @@
         </a>
     </div>
 
-    <div class="folder">
-        <ul id="accounts-list">
-        </ul>
+    <div class="folder-boxes">
+        <div class="folder left">
+            <ul id="accounts-list-left">
+            </ul>
 
-        <ul id="files-list">
-        </ul>
+            <ul id="files-list-left">
+            </ul>
 
-        <div id="spinner">
+            <div id="spinner-left">
+            </div>
+        </div>
+
+        <div class="folder right">
+            <ul id="accounts-list-right">
+            </ul>
+
+            <ul id="files-list-right">
+            </ul>
+
+            <div id="spinner-right">
+            </div>
         </div>
     </div>
 </div>

@@ -15,11 +15,24 @@
     width: 200px;
 }
 
+.folder-boxes {
+    margin: 10px auto;
+    width: 1020px;
+}
+
 .folder {
     border: 1px solid #e1e1e8;
     border-radius: 4px;
     width: 500px;
-    margin: 15px auto;
+    float: left;
+}
+
+.folder.left {
+    margin-right: 10px;
+}
+
+.folder.right {
+    margin-left: 10px;
 }
 
 .folder ul {
