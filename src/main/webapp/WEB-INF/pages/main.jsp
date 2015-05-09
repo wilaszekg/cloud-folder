@@ -28,11 +28,25 @@
     </script>
 
     <script id="folder-header-template" type="text/x-handlebars-template">
-        <button class="btn btn-info btn-sm back-to-accounts">Back to accounts list</button>
+        <div class="top-folder-menu">
+            <div class="form-inline">
+                <div class="form-group">
+                    <button class="btn btn-info btn-sm top-button back-to-accounts">Back to accounts list</button>
+                    <div class="input-group">
+                        <input type="text" class="folder-add-input form-control" placeholder="New folder"/>
+                        <div class="input-group-addon folder-add">+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <li class="back-to-parent">
             <span class="glyphicon glyphicon-folder-close"></span>
             <span>..</span>
         </li>
+    </script>
+
+    <script id="spinner-template" type="text/x-handlebars-template">
+        <span class="spinner"></span>
     </script>
 
     <script id="clients-json" type="application/json">
@@ -59,6 +73,9 @@
 
         <ul id="files-list">
         </ul>
+
+        <div id="spinner">
+        </div>
     </div>
 </div>
 </body>

@@ -31,8 +31,13 @@ public class StoragePort {
         return storageItems.stream().map(storageItem -> storageItemTransformer.apply(storageItem, appClient)).collect(Collectors.toList());
     }
 
-    public void createDirecotryWithNameForUserIdInDirectoryWithId(String name, String userId, String directoryId) {
+    public void createDirectoryWithNameForUserIdInDirectoryWithId(String name, String userId, String directoryId) {
         AppClient appClient = serviceCoordinator.appClient(userId);
         appClient.createDirectoryWithNameInDirectoryWithId(name, directoryId);
+    }
+
+    public void createDirectoryWithNameInRootDirectory(String name, String userId) {
+        AppClient appClient = serviceCoordinator.appClient(userId);
+        createDirectoryWithNameForUserIdInDirectoryWithId(name, userId, appClient.rootDirectoryId());
     }
 }

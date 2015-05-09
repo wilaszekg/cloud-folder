@@ -55,7 +55,19 @@
     display: inline-block;
 }
 
-.back-to-accounts {
+.top-folder-menu {
     margin-left: 15px;
     margin-bottom: 10px;
+}
+
+.folder-add {
+    cursor: pointer;
+}
+
+.spinner {
+    background: url(/resources/img/spinner.gif) no-repeat;
+    background-size: 80px 80px;
+    width: 192px;
+    height: 192px;
+    display: inline-block;
 }

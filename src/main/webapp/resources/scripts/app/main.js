@@ -2,7 +2,8 @@ define(["marionette", "jquery",
     "app/view/AccountsView",
     "app/model/AccountsCollection",
     "app/view/FilesView",
-    "app/model/FilesCollection"], function (Marionette, $, AccountsView, AccountsCollection, FilesView, FilesCollection) {
+    "app/model/FilesCollection",
+    "app/view/Spinner"], function (Marionette, $, AccountsView, AccountsCollection, FilesView, FilesCollection, Spinner) {
 
     var clientsJson = JSON.parse($("#clients-json").html());
     var accountsCollection = new AccountsCollection(clientsJson);
@@ -12,10 +13,12 @@ define(["marionette", "jquery",
     });
     accountsView.render();
 
+    var spinner = new Spinner({el: "#spinner"});
     var filesCollection = new FilesCollection();
     var filesView = new FilesView({
         collection: filesCollection,
-        el: "#files-list"
+        el: "#files-list",
+        spinner: spinner
     });
 
     filesView.listenTo(accountsView, "childview:account:open:main", filesView.openMainFolder);

@@ -25,9 +25,22 @@ define(["backbone", "app/model/FileModel", "app/model/FolderModel"], function (B
             }
         },
 
+        createNewFolder: function (name) {
+            var putUrl = this.url() + "/" + name;
+            var self = this;
+            this.reset();
+            $.ajax({
+                url: putUrl,
+                method: "PUT"
+            }).success(function () {
+                self.fetch();
+            });
+        },
+
         visitChild: function (childId) {
             this.parents.push(this.id);
             this.id = childId;
+            this.resetAndFetch();
             return this;
         },
 
@@ -35,12 +48,19 @@ define(["backbone", "app/model/FileModel", "app/model/FolderModel"], function (B
             this.clientId = clientId;
             this.id = null;
             this.parents = [];
+            this.resetAndFetch();
             return this;
         },
 
         visitParent: function () {
             this.id = this.parents.pop();
+            this.resetAndFetch();
             return this;
+        },
+
+        resetAndFetch: function () {
+            this.reset();
+            this.fetch();
         },
 
         hasParent: function () {
