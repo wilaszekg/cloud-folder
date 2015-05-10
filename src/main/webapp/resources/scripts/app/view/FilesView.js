@@ -39,7 +39,7 @@ define(["marionette",
         },
 
         addNewFolder: function () {
-            var name = $(".folder-add-input").val().trim();
+            var name = this.$el.find(".folder-add-input").val().trim();
             if (name.length) {
                 this.collection.createNewFolder(name);
             }
