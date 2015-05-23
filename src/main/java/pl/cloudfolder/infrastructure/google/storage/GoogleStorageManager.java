@@ -10,10 +10,12 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentList;
 import com.google.api.services.drive.model.ParentReference;
 import pl.cloudfolder.domain.storage.Directory;
+import pl.cloudfolder.domain.storage.StorageException;
 import pl.cloudfolder.domain.storage.StorageItem;
 import pl.cloudfolder.infrastructure.google.clients.GoogleException;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
@@ -91,10 +93,10 @@ public class GoogleStorageManager {
         }
     }
 
-    public void downloadFileToLocation(String fileId, String fileLocation) {
+    public void downloadFileToLocation(String fileId, String fileLocation, String filename) throws StorageException {
         FileOutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(fileLocation);
+            outputStream = new FileOutputStream(fileLocation + java.io.File.pathSeparator + filename);
             File file = getFile(fileId);
             if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
                 HttpResponse response = drive.getRequestFactory()
@@ -102,7 +104,7 @@ public class GoogleStorageManager {
                 IOUtils.copy(response.getContent(), outputStream);
             }
         } catch (IOException e) {
-            throw new GoogleException();
+            throw new StorageException(e);
         } finally {
             if (outputStream != null) {
                 try {
@@ -115,7 +117,7 @@ public class GoogleStorageManager {
 
     }
 
-    public void uploadFileFromPathToDirectory(String filePath, String directoryId) {
+    public void uploadFileFromPathToDirectory(String filePath, String directoryId) throws StorageException {
         java.io.File inputFile = new java.io.File(filePath);
         File file = new File();
         file.setTitle(inputFile.getName());
@@ -126,7 +128,7 @@ public class GoogleStorageManager {
             InputStreamContent inputStreamContent = new InputStreamContent(null, fileInputStream);
             drive.files().insert(file, inputStreamContent).execute();
         } catch (IOException e) {
-            throw new GoogleException(e);
+            throw new StorageException(e);
         } finally {
             if (fileInputStream != null) {
                 try {
@@ -138,11 +140,12 @@ public class GoogleStorageManager {
         }
     }
 
-    public void deleteFileOrDirectory(String id) {
+    public void deleteFileOrDirectory(String id) throws StorageException {
         try {
             drive.files().delete(id).execute();
         } catch (IOException e) {
-            throw new GoogleException(e);
+            throw new StorageException(e);
         }
+
     }
 }

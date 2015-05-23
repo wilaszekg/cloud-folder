@@ -3,6 +3,7 @@ package pl.cloudfolder.infrastructure.google.clients;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.ClientIds;
 import pl.cloudfolder.domain.ServiceType;
+import pl.cloudfolder.domain.storage.StorageException;
 import pl.cloudfolder.domain.storage.StorageItem;
 import pl.cloudfolder.infrastructure.google.storage.GoogleStorageManager;
 
@@ -54,17 +55,17 @@ public class GoogleAppClient implements AppClient {
     }
 
     @Override
-    public void downloadFileToLocation(String fileId, String fileLocation) {
-        googleStorageManager.downloadFileToLocation(fileId, fileLocation);
+    public void downloadFileToLocation(String fileId, String fileLocation, String filename) throws StorageException {
+        googleStorageManager.downloadFileToLocation(fileId, fileLocation, filename);
     }
 
     @Override
-    public void uploadFileFromPathToDirectory(String filePath, String directoryId) {
+    public void uploadFileFromPathToDirectory(String filePath, String directoryId) throws StorageException {
         googleStorageManager.uploadFileFromPathToDirectory(filePath, directoryId);
     }
 
     @Override
-    public void deleteFileOrDirectory(String id) {
+    public void deleteFileOrDirectory(String id) throws StorageException {
         googleStorageManager.deleteFileOrDirectory(id);
     }
 }

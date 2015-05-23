@@ -6,6 +6,7 @@ import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.ClientIds;
 import pl.cloudfolder.domain.storage.Directory;
 import pl.cloudfolder.domain.storage.File;
+import pl.cloudfolder.domain.storage.StorageException;
 import pl.cloudfolder.domain.storage.StorageItem;
 
 import java.io.FileInputStream;
@@ -82,13 +83,13 @@ public class DropboxAppClient implements AppClient {
     }
 
     @Override
-    public void downloadFileToLocation(String fileId, String fileLocation) {
+    public void downloadFileToLocation(String fileId, String fileLocation, String filename) throws StorageException {
         FileOutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(fileLocation);
+            outputStream = new FileOutputStream(fileLocation + java.io.File.pathSeparator + filename);
             dbxClient.getFile(fileId, null, outputStream);
         } catch (IOException | DbxException e) {
-            throw new DropboxException(e);
+            throw new StorageException(e);
         } finally {
             if (outputStream != null) {
                 try {
@@ -101,7 +102,7 @@ public class DropboxAppClient implements AppClient {
     }
 
     @Override
-    public void uploadFileFromPathToDirectory(String filePath, String directoryId) {
+    public void uploadFileFromPathToDirectory(String filePath, String directoryId) throws StorageException {
         java.io.File inputFile = new java.io.File(filePath);
         FileInputStream inputStream = null;
         try {
@@ -109,7 +110,7 @@ public class DropboxAppClient implements AppClient {
             dbxClient.uploadFile(directoryId + "/" + inputFile.getName(),
                     DbxWriteMode.add(), inputFile.length(), inputStream);
         } catch (IOException | DbxException e) {
-            throw new DropboxException(e);
+            throw new StorageException(e);
         } finally {
             if (inputStream != null) {
                 try {
@@ -122,11 +123,11 @@ public class DropboxAppClient implements AppClient {
     }
 
     @Override
-    public void deleteFileOrDirectory(String id) {
+    public void deleteFileOrDirectory(String id) throws StorageException {
         try {
             dbxClient.delete(id);
         } catch (DbxException e) {
-            throw new DropboxException(e);
+            throw new StorageException(e);
         }
     }
 

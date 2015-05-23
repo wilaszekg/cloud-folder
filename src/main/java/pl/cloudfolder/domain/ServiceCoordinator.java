@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.clients.AppClients;
 import pl.cloudfolder.domain.clients.UserService;
+import pl.cloudfolder.domain.storage.FileTransferManager;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -56,6 +57,10 @@ public class ServiceCoordinator {
 
     public AppClient appClient(String id) {
         return appClients(serviceType(id)).byId(id);
+    }
+
+    public FileTransferManager fileTransferManagerForSourceAndDectinationClientIds(String sourceClientId, String destinationClientId) {
+        return new FileTransferManager(appClient(sourceClientId), appClient(destinationClientId));
     }
 
     private ServiceType serviceType(String userId) {
