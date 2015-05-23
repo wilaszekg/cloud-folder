@@ -17,4 +17,8 @@ public interface AppClient {
     String rootDirectoryId();
 
     void createDirectoryWithNameInDirectoryWithId(String name, String parentDirectoryId);
+
+    void downloadFileToLocation(String fileId, String fileLocation);
+
+    void uploadFileFromPathToDirectory(String filePath, String directoryId);
 }

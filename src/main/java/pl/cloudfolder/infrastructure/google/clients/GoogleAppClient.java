@@ -52,4 +52,14 @@ public class GoogleAppClient implements AppClient {
     public void createDirectoryWithNameInDirectoryWithId(String name, String parentDirectoryId) {
         googleStorageManager.createDirectoryWithNameInDirectoryWithId(name, parentDirectoryId);
     }
+
+    @Override
+    public void downloadFileToLocation(String fileId, String fileLocation) {
+
+    }
+
+    @Override
+    public void uploadFileFromPathToDirectory(String filePath, String directoryId) {
+
+    }
 }
