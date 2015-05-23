@@ -21,4 +21,6 @@ public interface AppClient {
     void downloadFileToLocation(String fileId, String fileLocation);
 
     void uploadFileFromPathToDirectory(String filePath, String directoryId);
+
+    void deleteFileOrDirectory(String id);
 }

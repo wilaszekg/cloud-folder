@@ -121,4 +121,13 @@ public class DropboxAppClient implements AppClient {
         }
     }
 
+    @Override
+    public void deleteFileOrDirectory(String id) {
+        try {
+            dbxClient.delete(id);
+        } catch (DbxException e) {
+            throw new DropboxException(e);
+        }
+    }
+
 }

@@ -83,4 +83,7 @@ public class GoogleStorageManager {
             throw new GoogleException(e);
         }
     }
+
+    public void downloadFileToLocation(String fileId, String fileLocation) {
+    }
 }
