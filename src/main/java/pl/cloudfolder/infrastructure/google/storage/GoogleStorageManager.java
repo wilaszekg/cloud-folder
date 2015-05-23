@@ -1,13 +1,20 @@
 package pl.cloudfolder.infrastructure.google.storage;
 
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.util.IOUtils;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.google.api.services.drive.model.ParentList;
 import com.google.api.services.drive.model.ParentReference;
 import pl.cloudfolder.domain.storage.Directory;
 import pl.cloudfolder.domain.storage.StorageItem;
 import pl.cloudfolder.infrastructure.google.clients.GoogleException;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -85,5 +92,57 @@ public class GoogleStorageManager {
     }
 
     public void downloadFileToLocation(String fileId, String fileLocation) {
+        FileOutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(fileLocation);
+            File file = getFile(fileId);
+            if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
+                HttpResponse response = drive.getRequestFactory()
+                        .buildGetRequest(new GenericUrl(file.getDownloadUrl())).execute();
+                IOUtils.copy(response.getContent(), outputStream);
+            }
+        } catch (IOException e) {
+            throw new GoogleException();
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public void uploadFileFromPathToDirectory(String filePath, String directoryId) {
+        java.io.File inputFile = new java.io.File(filePath);
+        File file = new File();
+        file.setTitle(inputFile.getName());
+        file.setParents(Arrays.asList(new ParentReference().setId(directoryId)));
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(inputFile);
+            InputStreamContent inputStreamContent = new InputStreamContent(null, fileInputStream);
+            drive.files().insert(file, inputStreamContent).execute();
+        } catch (IOException e) {
+            throw new GoogleException(e);
+        } finally {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void deleteFileOrDirectory(String id) {
+        try {
+            drive.files().delete(id).execute();
+        } catch (IOException e) {
+            throw new GoogleException(e);
+        }
     }
 }

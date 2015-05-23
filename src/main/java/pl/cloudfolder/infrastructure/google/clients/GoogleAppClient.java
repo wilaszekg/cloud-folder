@@ -60,11 +60,11 @@ public class GoogleAppClient implements AppClient {
 
     @Override
     public void uploadFileFromPathToDirectory(String filePath, String directoryId) {
-
+        googleStorageManager.uploadFileFromPathToDirectory(filePath, directoryId);
     }
 
     @Override
     public void deleteFileOrDirectory(String id) {
-
+        googleStorageManager.deleteFileOrDirectory(id);
     }
 }
