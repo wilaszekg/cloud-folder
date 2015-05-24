@@ -1,14 +1,17 @@
 define(["marionette", "jquery"], function (Marionette, $) {
 
     var ajaxOperation = function (url, data) {
+        for (var key in data) {
+            if (!data[key]) delete data[key];
+        }
         this.trigger("file:req:start");
         var self = this;
         $.ajax({
             url: url,
-            method: "PUT",
-            date: data
+            method: "POST",
+            data: data
         }).success(function () {
-            this.trigger("file:req:finish");
+            self.trigger("file:req:finish");
         }).fail(function () {
             console.log("FAIL");
             self.trigger("file:req:finish");

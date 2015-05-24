@@ -1,15 +1,16 @@
 package pl.cloudfolder.application;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import pl.cloudfolder.application.dto.StorageItemDto;
 import pl.cloudfolder.application.translate.StorageItemTransformer;
 import pl.cloudfolder.domain.ServiceCoordinator;
 import pl.cloudfolder.domain.clients.AppClient;
 import pl.cloudfolder.domain.storage.StorageItem;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Component
 public class StoragePort {
@@ -39,5 +40,27 @@ public class StoragePort {
     public void createDirectoryWithNameInRootDirectory(String name, String userId) {
         AppClient appClient = serviceCoordinator.appClient(userId);
         createDirectoryWithNameForUserIdInDirectoryWithId(name, userId, appClient.rootDirectoryId());
+    }
+
+    public void copyFile(String sourceClient, String sourceFile, String destClient, String destDirectory) {
+        if (destDirectory == null) {
+            destDirectory = serviceCoordinator.appClient(destClient).rootDirectoryId();
+        }
+        serviceCoordinator
+                .fileTransferManagerForSourceAndDectinationClientIds(sourceClient, destClient)
+                .copyFileToDirectory(sourceFile, destDirectory);
+    }
+
+    public void moveFile(String sourceClient, String sourceFile, String destClient, String destDirectory) {
+        if (destDirectory == null) {
+            destDirectory = serviceCoordinator.appClient(destClient).rootDirectoryId();
+        }
+        serviceCoordinator
+                .fileTransferManagerForSourceAndDectinationClientIds(sourceClient, destClient)
+                .moveFileToDirectory(sourceFile, destDirectory);
+    }
+
+    public void removeFile(String clientId, String fileId) {
+        serviceCoordinator.appClient(clientId).deleteFileOrDirectory(fileId);
     }
 }

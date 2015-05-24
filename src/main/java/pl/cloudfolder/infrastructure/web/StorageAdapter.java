@@ -1,13 +1,19 @@
 package pl.cloudfolder.infrastructure.web;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import pl.cloudfolder.application.StoragePort;
 import pl.cloudfolder.application.dto.StorageItemDto;
-
-import java.util.Collection;
 
 @Controller
 @RequestMapping("/storage")
@@ -45,5 +51,30 @@ public class StorageAdapter {
     public void createDirectory(@PathVariable String userId,
                                 @PathVariable String newDirectory) {
         storagePort.createDirectoryWithNameInRootDirectory(newDirectory, userId);
+    }
+
+    @RequestMapping(value = "/{sourceUser}/{sourceFile}/copy", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void copyTo(@PathVariable String sourceUser,
+                       @PathVariable String sourceFile,
+                       @RequestParam String clientId,
+                       @RequestParam(required = false) String directoryId) {
+        storagePort.copyFile(sourceUser, sourceFile, clientId, directoryId);
+    }
+
+    @RequestMapping(value = "/{sourceUser}/{sourceFile}/move", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void moveTo(@PathVariable String sourceUser,
+                       @PathVariable String sourceFile,
+                       @RequestParam String clientId,
+                       @RequestParam(required = false) String directoryId) {
+        storagePort.moveFile(sourceUser, sourceFile, clientId, directoryId);
+    }
+
+    @RequestMapping(value = "/{userId}/{fileId}/remove", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void removeFile(@PathVariable String userId,
+                           @PathVariable String fileId) {
+        storagePort.removeFile(userId, fileId);
     }
 }

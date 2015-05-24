@@ -1,11 +1,12 @@
 package pl.cloudfolder.domain.storage;
 
-import org.apache.commons.io.FileUtils;
-import pl.cloudfolder.domain.clients.AppClient;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
+import org.apache.commons.io.FileUtils;
+
+import pl.cloudfolder.domain.clients.AppClient;
 
 /**
  * Created by Adiki on 2015-05-23.
@@ -19,17 +20,21 @@ public class FileTransferManager {
         this.destinationClient = destinationClient;
     }
 
-    public void copyFileToDirectory(String fileId, String directoryId) throws StorageException, IOException {
+    public void copyFileToDirectory(String fileId, String directoryId) {
         File tempDir = new File("temp" + File.pathSeparator + UUID.randomUUID().toString());
         tempDir.mkdirs();
         String filename = UUID.randomUUID().toString();
         sourceClient.downloadFileToLocation(fileId, tempDir.getPath(), filename);
         destinationClient.uploadFileFromPathToDirectory(tempDir.getPath() + File.pathSeparator + filename, directoryId);
-        FileUtils.deleteDirectory(tempDir);
+        try {
+            FileUtils.deleteDirectory(tempDir);
+        } catch (IOException e) {
+            throw new StorageException(e);
+        }
 
     }
 
-    public void moveFileToDirectory(String fileId, String directoryId) throws StorageException, IOException {
+    public void moveFileToDirectory(String fileId, String directoryId) {
         copyFileToDirectory(fileId, directoryId);
         sourceClient.deleteFileOrDirectory(fileId);
     }
