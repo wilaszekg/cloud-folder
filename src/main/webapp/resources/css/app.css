@@ -31,6 +31,10 @@
     margin-right: 10px;
 }
 
+.selected-file {
+    font-weight: bold;
+}
+
 .folder.right {
     margin-left: 10px;
 }

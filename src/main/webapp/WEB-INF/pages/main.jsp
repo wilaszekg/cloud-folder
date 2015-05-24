@@ -19,12 +19,20 @@
     </script>
 
     <script id="file-template" type="text/x-handlebars-template">
-        <span>{{name}}</span>
+        {{#if selected}}
+            <span class="selected-file">{{name}}</span>
+        {{else}}
+            <span>{{name}}</span>
+        {{/if}}
     </script>
 
     <script id="folder-template" type="text/x-handlebars-template">
-        <span class="glyphicon glyphicon-folder-open"></span>
-        <span>{{name}}</span>
+        <span class="glyphicon glyphicon-folder-open folder-open"></span>
+        {{#if selected}}
+            <span class="folder-description selected-file">{{name}}</span>
+        {{else}}
+            <span class="folder-description">{{name}}</span>
+        {{/if}}
     </script>
 
     <script id="folder-header-template" type="text/x-handlebars-template">
@@ -36,6 +44,14 @@
                         <input type="text" class="folder-add-input form-control" placeholder="New folder"/>
                         <div class="input-group-addon folder-add">+</div>
                     </div>
+
+                    {{#if selectedFileId}}
+                        {{#if destinationDirectory}}
+                            <button class="btn copy">C</button>
+                            <button class="btn move">M</button>
+                        {{/if}}
+                        <button class="btn remove">R</button>
+                    {{/if}}
                 </div>
             </div>
         </div>

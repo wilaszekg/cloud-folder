@@ -4,7 +4,8 @@ define(["backbone"], function (Backbone) {
             id: "",
             clientId: "",
             name: "",
-            folder: true
+            folder: true,
+            selected: false
         }
     })
 });
