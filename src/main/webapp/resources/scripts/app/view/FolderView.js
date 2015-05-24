@@ -4,11 +4,7 @@ define(["marionette", "app/lib/Hbs"], function (Marionette, hbs) {
         template: hbs("#folder-template"),
 
         events: {
-            "click .folder-open": "openFolder"
-        },
-
-        triggers: {
-            "click .folder-description": "file:selected"
+            "click": "openFolder"
         },
 
         openFolder: function () {

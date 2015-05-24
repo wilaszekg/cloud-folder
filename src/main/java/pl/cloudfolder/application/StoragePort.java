@@ -1,6 +1,7 @@
 package pl.cloudfolder.application;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,22 +43,18 @@ public class StoragePort {
         createDirectoryWithNameForUserIdInDirectoryWithId(name, userId, appClient.rootDirectoryId());
     }
 
-    public void copyFile(String sourceClient, String sourceFile, String destClient, String destDirectory) {
-        if (destDirectory == null) {
-            destDirectory = serviceCoordinator.appClient(destClient).rootDirectoryId();
-        }
+    public void copyFile(String sourceClient, String sourceFile, String destClient, Optional<String> destDirectory) {
         serviceCoordinator
                 .fileTransferManagerForSourceAndDectinationClientIds(sourceClient, destClient)
-                .copyFileToDirectory(sourceFile, destDirectory);
+                .copyFileToDirectory(sourceFile,
+                        destDirectory.orElse(serviceCoordinator.appClient(destClient).rootDirectoryId()));
     }
 
-    public void moveFile(String sourceClient, String sourceFile, String destClient, String destDirectory) {
-        if (destDirectory == null) {
-            destDirectory = serviceCoordinator.appClient(destClient).rootDirectoryId();
-        }
+    public void moveFile(String sourceClient, String sourceFile, String destClient, Optional<String> destDirectory) {
         serviceCoordinator
                 .fileTransferManagerForSourceAndDectinationClientIds(sourceClient, destClient)
-                .moveFileToDirectory(sourceFile, destDirectory);
+                .moveFileToDirectory(sourceFile,
+                        destDirectory.orElse(serviceCoordinator.appClient(destClient).rootDirectoryId()));
     }
 
     public void removeFile(String clientId, String fileId) {
