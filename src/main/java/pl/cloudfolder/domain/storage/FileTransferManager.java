@@ -20,10 +20,9 @@ public class FileTransferManager {
         this.destinationClient = destinationClient;
     }
 
-    public void copyFileToDirectory(String fileId, String directoryId) {
+    public void copyFileToDirectory(String fileId, String filename, String directoryId) {
         File tempDir = new File("temp" + "/" + UUID.randomUUID().toString());
         tempDir.mkdirs();
-        String filename = UUID.randomUUID().toString();
         sourceClient.downloadFileToLocation(fileId, tempDir.getPath(), filename);
         destinationClient.uploadFileFromPathToDirectory(tempDir.getPath() + "/" + filename, directoryId);
         try {
@@ -34,8 +33,8 @@ public class FileTransferManager {
 
     }
 
-    public void moveFileToDirectory(String fileId, String directoryId) {
-        copyFileToDirectory(fileId, directoryId);
+    public void moveFileToDirectory(String fileId, String filename, String directoryId) {
+        copyFileToDirectory(fileId, filename, directoryId);
         sourceClient.deleteFileOrDirectory(fileId);
     }
 }

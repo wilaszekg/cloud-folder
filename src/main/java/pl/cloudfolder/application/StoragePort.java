@@ -43,17 +43,17 @@ public class StoragePort {
         createDirectoryWithNameForUserIdInDirectoryWithId(name, userId, appClient.rootDirectoryId());
     }
 
-    public void copyFile(String sourceClient, String sourceFile, String destClient, Optional<String> destDirectory) {
+    public void copyFile(String sourceClient, String sourceFile, String sourceFilename, String destClient, Optional<String> destDirectory) {
         serviceCoordinator
                 .fileTransferManagerForSourceAndDectinationClientIds(sourceClient, destClient)
-                .copyFileToDirectory(sourceFile,
+                .copyFileToDirectory(sourceFile, sourceFilename,
                         destDirectory.orElse(serviceCoordinator.appClient(destClient).rootDirectoryId()));
     }
 
-    public void moveFile(String sourceClient, String sourceFile, String destClient, Optional<String> destDirectory) {
+    public void moveFile(String sourceClient, String sourceFile, String sourceFilename, String destClient, Optional<String> destDirectory) {
         serviceCoordinator
                 .fileTransferManagerForSourceAndDectinationClientIds(sourceClient, destClient)
-                .moveFileToDirectory(sourceFile,
+                .moveFileToDirectory(sourceFile, sourceFilename,
                         destDirectory.orElse(serviceCoordinator.appClient(destClient).rootDirectoryId()));
     }
 

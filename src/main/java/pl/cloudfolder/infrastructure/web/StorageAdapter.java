@@ -2,6 +2,7 @@ package pl.cloudfolder.infrastructure.web;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +61,7 @@ public class StorageAdapter {
                        @PathVariable String sourceFile,
                        @RequestParam String clientId,
                        @RequestParam(required = false) String directoryId) {
-        storagePort.copyFile(sourceUser, sourceFile, clientId, Optional.ofNullable(directoryId));
+        storagePort.copyFile(sourceUser, sourceFile, UUID.randomUUID().toString(), clientId, Optional.ofNullable(directoryId));
     }
 
     @RequestMapping(value = "/{sourceUser}/{sourceFile}/move", method = RequestMethod.POST)
@@ -69,7 +70,7 @@ public class StorageAdapter {
                        @PathVariable String sourceFile,
                        @RequestParam String clientId,
                        @RequestParam(required = false) String directoryId) {
-        storagePort.moveFile(sourceUser, sourceFile, clientId, Optional.ofNullable(directoryId));
+        storagePort.moveFile(sourceUser, sourceFile, UUID.randomUUID().toString(), clientId, Optional.ofNullable(directoryId));
     }
 
     @RequestMapping(value = "/{userId}/{fileId}/remove", method = RequestMethod.POST)
