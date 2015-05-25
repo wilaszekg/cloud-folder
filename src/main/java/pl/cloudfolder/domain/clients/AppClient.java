@@ -26,4 +26,6 @@ public interface AppClient {
     void uploadFileFromPathToDirectory(String filePath, String directoryId) throws StorageException;
 
     void deleteFileOrDirectory(String id) throws StorageException;
+
+    String filenameForFileId(String fileId);
 }

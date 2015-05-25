@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -129,6 +130,11 @@ public class DropboxAppClient implements AppClient {
         } catch (DbxException e) {
             throw new StorageException(e);
         }
+    }
+
+    @Override
+    public String filenameForFileId(String fileId) {
+        return Paths.get(fileId).getFileName().toString();
     }
 
 }

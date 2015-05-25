@@ -59,7 +59,7 @@ public class ServiceCoordinator {
         return appClients(serviceType(id)).byId(id);
     }
 
-    public FileTransferManager fileTransferManagerForSourceAndDectinationClientIds(String sourceClientId, String destinationClientId) {
+    public FileTransferManager fileTransferManagerForSourceAndDestinationClientIds(String sourceClientId, String destinationClientId) {
         return new FileTransferManager(appClient(sourceClientId), appClient(destinationClientId));
     }
 

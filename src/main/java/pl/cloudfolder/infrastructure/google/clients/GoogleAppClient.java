@@ -68,4 +68,9 @@ public class GoogleAppClient implements AppClient {
     public void deleteFileOrDirectory(String id) throws StorageException {
         googleStorageManager.deleteFileOrDirectory(id);
     }
+
+    @Override
+    public String filenameForFileId(String fileId) {
+        return googleStorageManager.filenameForFileId(fileId);
+    }
 }

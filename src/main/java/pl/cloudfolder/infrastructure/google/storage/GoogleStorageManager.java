@@ -148,4 +148,8 @@ public class GoogleStorageManager {
         }
 
     }
+
+    public String filenameForFileId(String fileId) {
+        return getFile(fileId).getTitle();
+    }
 }
