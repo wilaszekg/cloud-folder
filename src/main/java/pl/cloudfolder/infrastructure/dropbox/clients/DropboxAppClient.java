@@ -86,7 +86,7 @@ public class DropboxAppClient implements AppClient {
     public void downloadFileToLocation(String fileId, String fileLocation, String filename) throws StorageException {
         FileOutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(fileLocation + java.io.File.pathSeparator + filename);
+            outputStream = new FileOutputStream(fileLocation + "/" + filename);
             dbxClient.getFile(fileId, null, outputStream);
         } catch (IOException | DbxException e) {
             throw new StorageException(e);

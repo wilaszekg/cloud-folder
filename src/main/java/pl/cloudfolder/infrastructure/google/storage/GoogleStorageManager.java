@@ -96,7 +96,7 @@ public class GoogleStorageManager {
     public void downloadFileToLocation(String fileId, String fileLocation, String filename) throws StorageException {
         FileOutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(fileLocation + java.io.File.pathSeparator + filename);
+            outputStream = new FileOutputStream(fileLocation + "/" + filename);
             File file = getFile(fileId);
             if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
                 HttpResponse response = drive.getRequestFactory()

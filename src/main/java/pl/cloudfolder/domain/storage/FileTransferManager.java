@@ -21,11 +21,11 @@ public class FileTransferManager {
     }
 
     public void copyFileToDirectory(String fileId, String directoryId) {
-        File tempDir = new File("temp" + File.pathSeparator + UUID.randomUUID().toString());
+        File tempDir = new File("temp" + "/" + UUID.randomUUID().toString());
         tempDir.mkdirs();
         String filename = UUID.randomUUID().toString();
         sourceClient.downloadFileToLocation(fileId, tempDir.getPath(), filename);
-        destinationClient.uploadFileFromPathToDirectory(tempDir.getPath() + File.pathSeparator + filename, directoryId);
+        destinationClient.uploadFileFromPathToDirectory(tempDir.getPath() + "/" + filename, directoryId);
         try {
             FileUtils.deleteDirectory(tempDir);
         } catch (IOException e) {
