@@ -1,5 +1,6 @@
 package pl.cloudfolder.application;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,5 +60,13 @@ public class StoragePort {
 
     public void removeFile(String clientId, String fileId) {
         serviceCoordinator.appClient(clientId).deleteFileOrDirectory(fileId);
+    }
+
+    public void uploadFile(String clientId, String directoryId, byte[] data, String name) {
+        serviceCoordinator.fileTransferManager(clientId).uploadFile(data, directoryId, name);
+    }
+
+    public File downloadFile(String clientId, String fileId) {
+        return serviceCoordinator.fileTransferManager(clientId).downloadFile(fileId);
     }
 }

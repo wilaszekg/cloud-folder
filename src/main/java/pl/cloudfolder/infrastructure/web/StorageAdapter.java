@@ -1,9 +1,11 @@
 package pl.cloudfolder.infrastructure.web;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import pl.cloudfolder.application.StoragePort;
 import pl.cloudfolder.application.dto.StorageItemDto;
@@ -77,5 +80,28 @@ public class StorageAdapter {
     public void removeFile(@PathVariable String userId,
                            @PathVariable String fileId) {
         storagePort.removeFile(userId, fileId);
+    }
+
+    @RequestMapping(value = "/{userId}/{directoryId}/upload", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void uploadFile(@PathVariable String userId,
+                           @PathVariable String directoryId,
+                           @RequestParam MultipartFile file) throws IOException {
+        storagePort.uploadFile(userId, directoryId, file.getBytes(), file.getOriginalFilename());
+    }
+
+    @RequestMapping(value = "/{userId}/upload", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void uploadFileToMainFolder(@PathVariable String userId,
+                                       @RequestParam MultipartFile file) throws IOException {
+        storagePort.uploadFile(userId, null, file.getBytes(), file.getOriginalFilename());
+    }
+
+    @RequestMapping(value = "/{userId}/{fileId}/download/{visibleName}", method = RequestMethod.GET)
+    @ResponseBody
+    public FileSystemResource downloadFile(@PathVariable String userId,
+                                           @PathVariable String fileId,
+                                           @PathVariable String visibleName) {
+        return new FileSystemResource(storagePort.downloadFile(userId, fileId));
     }
 }

@@ -35,6 +35,15 @@
         {{/if}}
     </script>
 
+    <script id="file-upload-template" type="text/x-handlebars-template">
+        {{#if enabled}}
+        <form enctype="multipart/form-data" action="{{uploadAction}}" method="post">
+            <input name="file" type="file"/>
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+        {{/if}}
+    </script>
+
     <script id="folder-header-template" type="text/x-handlebars-template">
         <div class="top-folder-menu">
             <div class="form-inline">
@@ -51,6 +60,7 @@
                             <button class="btn move">M</button>
                         {{/if}}
                         <button class="btn remove">R</button>
+                        <a class="btn" href="/storage/{{clientIdForFile}}/{{selectedFileId}}/download/{{nameForFile}}" download>DL</a>
                     {{/if}}
                 </div>
             </div>
@@ -82,6 +92,10 @@
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
+
+    <div id="left-upload"></div>
+
+    <div id="right-upload"></div>
 
     <div class="folder-boxes">
         <div class="folder left">

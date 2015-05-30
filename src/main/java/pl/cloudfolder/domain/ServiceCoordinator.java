@@ -63,6 +63,10 @@ public class ServiceCoordinator {
         return new FileTransferManager(appClient(sourceClientId), appClient(destinationClientId));
     }
 
+    public FileTransferManager fileTransferManager(String sourceClientId) {
+        return new FileTransferManager(appClient(sourceClientId));
+    }
+
     private ServiceType serviceType(String userId) {
         if (userId.startsWith(ServiceType.dropbox.name())) {
             return ServiceType.dropbox;

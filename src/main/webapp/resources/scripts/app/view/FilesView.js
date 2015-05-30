@@ -106,6 +106,8 @@ define(["marionette",
         fileSelected: function (file) {
             var selectedId = file.model.get('id');
             this.model.set("selectedFileId", selectedId);
+            this.model.set("clientIdForFile", file.model.get("clientId"));
+            this.model.set("nameForFile", file.model.get("name"));
             this.collection.forEach(function (item) {
                 if (item.get("id") === selectedId) {
                     item.set("selected", true);

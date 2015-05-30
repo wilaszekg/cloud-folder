@@ -12,7 +12,8 @@ requirejs.config({
         json2: "json2",
         backbone: 'backbone',
         marionette: 'backbone.marionette',
-        handlebars: 'handlebars-v3.0.3'
+        handlebars: 'handlebars-v3.0.3',
+        ajaxdownload: 'ajax-download'
     },
     shim: {
         underscore: {
@@ -25,6 +26,9 @@ requirejs.config({
         marionette: {
             deps: ["backbone"],
             exports: "Marionette"
+        },
+        ajaxdownload: {
+            deps: ["jquery"]
         }
     }
 });
