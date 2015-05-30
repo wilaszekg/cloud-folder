@@ -84,10 +84,11 @@ public class StorageAdapter {
 
     @RequestMapping(value = "/{userId}/{directoryId}/upload", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void uploadFile(@PathVariable String userId,
-                           @PathVariable String directoryId,
-                           @RequestParam MultipartFile file) throws IOException {
+    public String uploadFile(@PathVariable String userId,
+                             @PathVariable String directoryId,
+                             @RequestParam MultipartFile file) throws IOException {
         storagePort.uploadFile(userId, directoryId, file.getBytes(), file.getOriginalFilename());
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/{userId}/upload", method = RequestMethod.POST)
