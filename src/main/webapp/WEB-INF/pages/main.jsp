@@ -39,7 +39,7 @@
         {{#if enabled}}
         <form enctype="multipart/form-data" action="{{uploadAction}}" method="post">
             <input name="file" type="file"/>
-            <input type="submit" value="Upload Image" name="submit">
+            <input type="submit" value="Upload Image" name="submit" class="form-control">
         </form>
         {{/if}}
     </script>
@@ -93,12 +93,13 @@
         </a>
     </div>
 
-    <div id="left-upload"></div>
 
-    <div id="right-upload"></div>
+
 
     <div class="folder-boxes">
         <div class="folder left">
+            <div id="left-upload" class="upload"></div>
+
             <ul id="accounts-list-left">
             </ul>
 
@@ -110,6 +111,8 @@
         </div>
 
         <div class="folder right">
+            <div id="right-upload" class="upload"></div>
+
             <ul id="accounts-list-right">
             </ul>
 

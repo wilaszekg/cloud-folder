@@ -88,3 +88,7 @@
     height: 192px;
     display: inline-block;
 }
+
+.upload {
+    margin: 10px;
+}
