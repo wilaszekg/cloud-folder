@@ -87,15 +87,16 @@ public class StorageAdapter {
     public String uploadFile(@PathVariable String userId,
                              @PathVariable String directoryId,
                              @RequestParam MultipartFile file) throws IOException {
-        storagePort.uploadFile(userId, directoryId, file.getBytes(), file.getOriginalFilename());
+        storagePort.uploadFile(userId, Optional.ofNullable(directoryId), file.getBytes(), file.getOriginalFilename());
         return "redirect:/";
     }
 
     @RequestMapping(value = "/{userId}/upload", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void uploadFileToMainFolder(@PathVariable String userId,
-                                       @RequestParam MultipartFile file) throws IOException {
-        storagePort.uploadFile(userId, null, file.getBytes(), file.getOriginalFilename());
+    public String uploadFileToMainFolder(@PathVariable String userId,
+                                         @RequestParam MultipartFile file) throws IOException {
+        storagePort.uploadFile(userId, Optional.empty(), file.getBytes(), file.getOriginalFilename());
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/{userId}/{fileId}/download/{visibleName}", method = RequestMethod.GET)

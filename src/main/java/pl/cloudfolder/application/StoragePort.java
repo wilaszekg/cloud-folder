@@ -62,8 +62,10 @@ public class StoragePort {
         serviceCoordinator.appClient(clientId).deleteFileOrDirectory(fileId);
     }
 
-    public void uploadFile(String clientId, String directoryId, byte[] data, String name) {
-        serviceCoordinator.fileTransferManager(clientId).uploadFile(data, directoryId, name);
+    public void uploadFile(String clientId, Optional<String> directoryId, byte[] data, String name) {
+        serviceCoordinator
+                .fileTransferManager(clientId)
+                .uploadFile(data, directoryId.orElse(serviceCoordinator.appClient(clientId).rootDirectoryId()), name);
     }
 
     public File downloadFile(String clientId, String fileId) {
